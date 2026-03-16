@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+<!--
+    This build is from 2026-02-02.
+
+    This is a Offline Download of Slime Rancher from my site https://dev.snubby.top/ & https://slimeranchers.com/
+
+    If theres somewhere else you got this or someone made you pay, you got scammed.
+
+    For any updates check the https://dev.snubby.top/ & https://slimeranchers.com/
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+    <script>
+        var embeddedJsonData = {
+            "companyName": "Snubs",
+            "productName": "SlimeRancher Prototype",
+            "dataUrl": "SlimeRancher.data",      // Make sure these match your actual filenames
+            "wasmCodeUrl": "SlimeRancher.wasm", 
+            "wasmFrameworkUrl": "SlimeRancher.framework.js", 
+            "TOTAL_MEMORY": 536870912,
+            "graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+            "webglContextAttributes": {"preserveDrawingBuffer": true},
+            "splashScreenStyle": "Dark",
+            "backgroundColor": "#000000"
+        };
+    </script>
+    
+    <script src="UnityLoader.js"></script> 
+</head>
+
+<body style="text-align: center; background-color: #000000; margin: 0;">
+    <div id="gameContainer"></div>
+
+    <script>
+        // This is the missing piece that actually starts the game
+        var gameInstance = UnityLoader.instantiate("gameContainer", embeddedJsonData);
+    </script>
+</body>
+</html>
