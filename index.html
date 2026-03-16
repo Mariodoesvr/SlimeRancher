@@ -1,60 +1,45 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-<!--
-    This build is from 2026-02-02.
-
-    This is a Offline Download of Slime Rancher from my site https://dev.snubby.top/ & https://slimeranchers.com/
-
-    If theres somewhere else you got this or someone made you pay, you got scammed.
-
-    For any updates check the https://dev.snubby.top/ & https://slimeranchers.com/
--->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <html>
 <head>
+    <meta charset="utf-8">
+    <title>Slime Rancher | OFFLINE BUILD</title>
+    <style>
+        body { margin: 0; background-color: #000; overflow: hidden; }
+        #gameContainer { width: 100vw; height: 100vh; }
+    </style>
+
     <script>
         var embeddedJsonData = {
-    "companyName": "Snubs",
-    "productName": "SlimeRancher Prototype",
-    "dataUrl": "Build/SlimeRancher.data.unityweb", 
-    "wasmCodeUrl": "Build/SlimeRancher.wasm.code.unityweb", 
-    "wasmFrameworkUrl": "Build/SlimeRancher.wasm.framework.unityweb", 
-    "TOTAL_MEMORY": 536870912,
-    "graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
-    "webglContextAttributes": {"preserveDrawingBuffer": true},
-    "splashScreenStyle": "Dark",
-    "backgroundColor": "#000000"
-};
+            "companyName": "Snubs",
+            "productName": "SlimeRancher Prototype",
+            "dataUrl": "Build/data", 
+            "wasmCodeUrl": "Build/wasmCode", 
+            "wasmFrameworkUrl": "Build/wasmFramework", 
+            "TOTAL_MEMORY": 536870912,
+            "graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+            "webglContextAttributes": {"preserveDrawingBuffer": true},
+            "splashScreenStyle": "Dark",
+            "backgroundColor": "#000000"
+        };
     </script>
+
+    <script src="Build/UnityLoader.js"></script>
     
-    <script src="UnityLoader.js"></script> 
+    <script>
+        function UnityProgress(gameInstance, progress) {
+            if (!gameInstance.Module) return;
+            // (The rest of the logic from your UnityProgress.html goes here)
+            console.log("Loading: " + (progress * 100) + "%");
+        }
+    </script>
 </head>
 
-<body style="text-align: center; background-color: #000000; margin: 0;">
+<body>
     <div id="gameContainer"></div>
 
     <script>
-        // This is the missing piece that actually starts the game
-        var gameInstance = UnityLoader.instantiate("gameContainer", embeddedJsonData);
+        // 4. Start the game and use the Progress bar
+        var gameInstance = UnityLoader.instantiate("gameContainer", embeddedJsonData, {onProgress: UnityProgress});
     </script>
 </body>
 </html>
